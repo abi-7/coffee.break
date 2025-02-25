@@ -1,0 +1,24 @@
+{
+  "name": "coffee-break",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/abi-7/coffee.break#readme",
+  "bugs": {
+    "url": "https://github.com/abi-7/coffee.break/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abi-7/coffee.break.git"
+  },
+  "license": "ISC",
+  "author": "Abigail Ferreira",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^34.2.0"
+  }
+}
