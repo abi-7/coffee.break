@@ -1,22 +1,23 @@
-<!--index.html-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <title>Hello World!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee Break App</title>
+    <link href="src/styles.css" rel="stylesheet" />
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>, Chromium
-    <span id="chrome-version"></span>, and Electron
-    <span id="electron-version"></span>.
-
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
+    <div id="container">
+      <div id="title">
+        <h1>Coffee.Break</h1>
+        <img
+          src="public\images\coffee-pixel-gif.gif"
+          alt="Description of GIF"
+        />
+      </div>
+      <div id="center">
+        <button>Start Timer</button>
+      </div>
+    </div>
   </body>
 </html>
