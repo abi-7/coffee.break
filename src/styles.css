@@ -54,12 +54,12 @@ button:hover {
 
 #title {
   display: flex;
-  align-items: center; /* Align items (h1 and img) vertically */
+  align-items: center; /*align h1 and img vertically*/
   gap: 250px;
   margin-bottom: 30px;
 }
 
 #title img {
-  width: 100px; /* Adjust the size as needed */
+  width: 100px;
   height: auto;
 }
