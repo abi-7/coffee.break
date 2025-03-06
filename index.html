@@ -16,8 +16,12 @@
         />
       </div>
       <div id="center">
-        <div id="timer">0</div>
-        <button onclick="startTimer()">Start Timer</button>
+        <div class="timer">
+          <span class="minute">25</span>:<span class="second">00</span>
+        </div>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="stopTimer()">Stop</button>
+        <button onclick="resetTimer()">Reset</button>
       </div>
     </div>
     <script src="src/components/timer.js"></script>
