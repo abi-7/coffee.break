@@ -4,8 +4,15 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "pixel";
+  src: url(./public/images/fonts/04B30.TTF) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: "pixel", sans-serif;
   background-color: #a17463;
   display: flex;
   justify-content: center;
@@ -41,6 +48,7 @@ button {
   color: white;
   cursor: pointer;
   display: inline-block;
+  font-family: "pixel", sans-serif;
   font-size: 2rem;
   margin: 1rem;
   min-width: 200px;
@@ -55,7 +63,7 @@ button:hover {
 #title {
   display: flex;
   align-items: center; /*align h1 and img vertically*/
-  gap: 250px;
+  gap: 150px;
   margin-bottom: 30px;
 }
 
@@ -70,7 +78,7 @@ div.timer {
   height: 50px;
   line-height: 50px;
   font-size: 36px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "pixel", sans-serif;
   text-align: center;
   margin: 5px;
 }
