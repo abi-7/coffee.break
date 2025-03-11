@@ -11,7 +11,7 @@
       <div id="title">
         <h1>Coffee.Break</h1>
         <img
-          src="public\images\coffee-pixel-gif.gif"
+          src="public/images/coffee-pixel-gif.gif"
           alt="Description of GIF"
         />
       </div>
@@ -19,9 +19,16 @@
         <div class="timer">
           <span class="minute">25</span>:<span class="second">00</span>
         </div>
-        <button onclick="startTimer()">Start</button>
-        <button onclick="stopTimer()">Stop</button>
-        <button onclick="resetTimer()">Reset</button>
+        <img
+          id="coffee-cup"
+          src="public/images/pixil-cup-empty.png"
+          alt="Coffee Cup"
+        />
+        <div class="button-container">
+          <button onclick="startTimer()">Start</button>
+          <button onclick="stopTimer()">Stop</button>
+          <button onclick="resetTimer()">Reset</button>
+        </div>
       </div>
     </div>
     <script src="src/components/timer.js"></script>
