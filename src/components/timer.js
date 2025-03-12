@@ -4,25 +4,50 @@ var isRunning = false; //is timer started or stopped
 const emptyMug = "public/images/pixil-cup-empty.png";
 const fullMug = "public/images/pixil-cup-full.png";
 let mugInterval = null;
+const coffeeBeanFull = "public/images/pixil-coffee-bean-full.png";
+const coffeeBeanEmpty = "public/images/pixil-coffee-bean-empty.png";
 
 function updateCoffeeCup() {
   const coffeeCup = document.getElementById("coffee-cup");
 
   let isFilling = false; // Track state
 
-  // Clear any existing interval
+  //clear any existing interval
   if (mugInterval) {
     clearInterval(mugInterval);
   }
 
-  // Switch images every 2 seconds if the timer is running
+  //switch between empty and full images while timer is running
   if (isRunning) {
     mugInterval = setInterval(() => {
       isFilling = !isFilling; // Toggle state
       coffeeCup.src = isFilling ? fullMug : emptyMug;
-    }, 1000);
+    }, 500);
   } else {
     coffeeCup.src = emptyMug;
+  }
+}
+
+//fills up empty coffee beans as timer goes on
+function updateProgress() {
+  const progressContainer = document.getElementById("progress-container");
+
+  //clear any existing beans
+  progressContainer.innerHTML = "";
+
+  const totalBeans = 5;
+
+  const elapsed = 1500 - time; // Time that has passed
+  const beansToFill = Math.floor((elapsed / 1500) * totalBeans);
+
+  //display row of empty coffee beans
+  for (let i = 0; i < totalBeans; i++) {
+    const coffeeBean = document.createElement("img");
+    //coffeeBean.src = coffeeBeanEmpty;
+    coffeeBean.src = i < beansToFill ? coffeeBeanFull : coffeeBeanEmpty;
+    coffeeBean.alt = "Empty Coffee Bean";
+    coffeeBean.classList.add("coffee-bean");
+    progressContainer.appendChild(coffeeBean);
   }
 }
 
@@ -41,6 +66,7 @@ function updateTimer() {
   if (time > 0) {
     time--;
     generateTime();
+    updateProgress();
   } else {
     stopTimer();
   }
@@ -74,4 +100,5 @@ function resetTimer() {
 window.onload = function () {
   generateTime();
   updateCoffeeCup();
+  updateProgress();
 };
