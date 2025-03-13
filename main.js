@@ -7,12 +7,17 @@ function createWindow() {
   win = new BrowserWindow({
     width: 800,
     height: 700,
+    resizable: false,
+    movable: false,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true, // Required for preload
       preload: path.join(__dirname, "preload.js"), // Load preload script
     },
   });
+
+  win.setMenuBarVisibility(false);
+  win.setMenu(null);
 
   // Make sure this path is correct based on your file structure
   win.loadFile(path.join(__dirname, "index.html"));
