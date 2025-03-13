@@ -37,8 +37,9 @@ function updateProgress() {
 
   const totalBeans = 5;
 
-  const elapsed = 1500 - time; // Time that has passed
-  const beansToFill = Math.floor((elapsed / 1500) * totalBeans);
+  const totalDuration = totalBeans * 5 * 60;
+  const elapsed = totalDuration - time; // Time that has passed
+  const beansToFill = Math.floor(elapsed / (5 * 60));
 
   //display row of empty coffee beans
   for (let i = 0; i < totalBeans; i++) {
