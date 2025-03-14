@@ -160,6 +160,14 @@ div.timer {
   margin-left: 60px;
   z-index: 0;
   opacity: 0;
+  /* Ensure steam is hidden by default */
+  visibility: hidden;
+}
+
+.steam.steam-active {
+  visibility: visible;
+  opacity: 0.6;
+  animation: steam-one 4s ease-out infinite;
 }
 
 #steam-one {
@@ -167,8 +175,16 @@ div.timer {
   animation: steam-one 4s ease-out infinite;
 }
 
+#steam-one.steam-active {
+  animation: steam-one 4s ease-out infinite;
+}
+
 #steam-three {
   -webkit-animation: steam-one 4s ease-out 1s infinite;
+  animation: steam-one 4s ease-out 1s infinite;
+}
+
+#steam-three.steam-active {
   animation: steam-one 4s ease-out 1s infinite;
 }
 
@@ -199,8 +215,16 @@ div.timer {
   animation: steam-two 4s ease-out 0.5s infinite;
 }
 
+#steam-two.steam-active {
+  animation: steam-two 4s ease-out 0.5s infinite;
+}
+
 #steam-four {
   -webkit-animation: steam-two 4s ease-out 1.5s infinite;
+  animation: steam-two 4s ease-out 1.5s infinite;
+}
+
+#steam-four.steam-active {
   animation: steam-two 4s ease-out 1.5s infinite;
 }
 

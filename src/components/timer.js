@@ -80,6 +80,11 @@ function startTimer(interval = 1000) {
     myTimer = setInterval(updateTimer, interval);
     updateCoffeeCup();
   }
+
+  const steamElements = document.querySelectorAll(".steam");
+  steamElements.forEach((steam) => {
+    steam.classList.add("steam-active"); // Show steam
+  });
 }
 
 //stops timer
@@ -88,6 +93,11 @@ function stopTimer() {
   isRunning = false;
   updateCoffeeCup();
   alert("Time is up!");
+
+  const steamElements = document.querySelectorAll(".steam");
+  steamElements.forEach((steam) => {
+    steam.classList.remove("steam-active"); // Hide steam
+  });
 }
 
 //resets timer - not sure if will use
