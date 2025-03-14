@@ -34,6 +34,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 h1 {
@@ -44,13 +45,6 @@ h1 {
 
 button {
   background: #a17463;
-  border-bottom: 6px inset rgba(0, 0, 0, 0.5);
-  border-left: 6px inset rgba(0, 0, 0, 0.5);
-  border-right: 6px inset rgba(255, 255, 255, 0.5);
-  border-top: 6px inset rgba(255, 255, 255, 0.5);
-  box-sizing: border-box;
-  color: white;
-  cursor: pointer;
   display: inline-block;
   font-family: "pixel", sans-serif;
   font-size: 1.5rem;
@@ -59,6 +53,43 @@ button {
   padding: 0.5rem 1rem;
   width: auto;
   margin-top: 10px;
+  outline: 0;
+  align-items: center;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 30px;
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 8px;
+  justify-content: center;
+  line-height: 1.5;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  transition: all 0.14s ease-out;
+  white-space: nowrap;
+  /* Default state */
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 #000;
+
+  /* Accessible focus */
+  &:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+  }
+
+  /* Hover state (stays in place) */
+  &:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0 #000;
+  }
+
+  /* Active (clicked) state: Moves inward */
+  &:active {
+    transform: translate(0, 0);
+    box-shadow: none;
+  }
 }
 
 button-container {
@@ -99,10 +130,10 @@ div.timer {
   width: 250px;
   height: auto;
   display: block;
-  margin-top: 0px;
+  margin-top: 35px;
   margin-bottom: 0px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 185px;
   image-rendering: pixelated;
 }
 
@@ -117,4 +148,80 @@ div.timer {
 .coffee-bean {
   width: 100px;
   height: auto;
+}
+
+.steam {
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin-top: 60px;
+  margin-left: 60px;
+  z-index: 0;
+  opacity: 0;
+}
+
+#steam-one {
+  -webkit-animation: steam-one 4s ease-out infinite;
+  animation: steam-one 4s ease-out infinite;
+}
+
+#steam-three {
+  -webkit-animation: steam-one 4s ease-out 1s infinite;
+  animation: steam-one 4s ease-out 1s infinite;
+}
+
+@-webkit-keyframes steam-one {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.25);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-200px) translateX(-20px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes steam-one {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.25);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-200px) translateX(-20px) scale(1);
+    opacity: 0;
+  }
+}
+
+#steam-two {
+  -webkit-animation: steam-two 4s ease-out 0.5s infinite;
+  animation: steam-two 4s ease-out 0.5s infinite;
+}
+
+#steam-four {
+  -webkit-animation: steam-two 4s ease-out 1.5s infinite;
+  animation: steam-two 4s ease-out 1.5s infinite;
+}
+
+@-webkit-keyframes steam-two {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.25);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-200px) translateX(20px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes steam-two {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.25);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-200px) translateX(20px) scale(1);
+    opacity: 0;
+  }
 }
