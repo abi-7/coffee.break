@@ -6,6 +6,9 @@ const fullMug = "public/images/pixil-cup-full.png";
 let mugInterval = null;
 const coffeeBeanFull = "public/images/pixil-coffee-bean-full.png";
 const coffeeBeanEmpty = "public/images/pixil-coffee-bean-empty.png";
+const audio = document.getElementById("audioPlayer");
+const muteBtn = document.getElementById("muteBtn");
+audio.loop = true; // Ensure audio loops continuously
 
 function updateCoffeeCup() {
   const coffeeCup = document.getElementById("coffee-cup");
@@ -83,8 +86,10 @@ function startTimer(interval = 1000) {
 
   const steamElements = document.querySelectorAll(".steam");
   steamElements.forEach((steam) => {
-    steam.classList.add("steam-active"); // Show steam
+    steam.classList.add("steam-active");
   });
+
+  audio.play(); // Autoplay audio
 }
 
 //stops timer
@@ -96,8 +101,10 @@ function stopTimer() {
 
   const steamElements = document.querySelectorAll(".steam");
   steamElements.forEach((steam) => {
-    steam.classList.remove("steam-active"); // Hide steam
+    steam.classList.remove("steam-active");
   });
+
+  audio.pause(); // Pause audio
 }
 
 //resets timer - not sure if will use
@@ -107,9 +114,14 @@ function resetTimer() {
   generateTime();
 }
 
-//load on page
+// Audio controls
 window.onload = function () {
   generateTime();
   updateCoffeeCup();
   updateProgress();
+
+  muteBtn.addEventListener("click", () => {
+    audio.muted = !audio.muted;
+    muteBtn.textContent = audio.muted ? "🔊" : "🔇"; // Toggle mute icon
+  });
 };
