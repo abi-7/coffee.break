@@ -156,6 +156,10 @@ div.timer {
   right: 20px;
 }
 
+#break-animation {
+  display: none;
+}
+
 .steam {
   position: absolute;
   height: 150px;
