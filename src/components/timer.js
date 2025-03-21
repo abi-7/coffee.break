@@ -1,5 +1,5 @@
 var myTimer = null; //for setInterval
-var time = 120; //time of timer
+var time = 60; //time of timer
 var isRunning = false; //is timer started or stopped
 const emptyMug = "public/images/pixil-cup-empty.png";
 const fullMug = "public/images/pixil-cup-full.png";
@@ -10,14 +10,18 @@ const audio = document.getElementById("audioPlayer");
 const muteBtn = document.getElementById("muteBtn");
 audio.loop = true; //audio loops continuously
 const catGif = "public/images/cat-cute.gif";
+var isBreak = false; // Tracks if the timer is in a break state
 
 function updateCoffeeCup() {
   const coffeeCup = document.getElementById("coffee-cup");
-  const breakAnimation = document.getElementById("break-animation"); // Define breakAnimation
+  const breakAnimation = document.getElementById("break-animation");
+  const breakText = document.getElementById("break-text");
   //show coffee cup
   coffeeCup.style.display = "block";
   // Hide break animation
   breakAnimation.style.display = "none";
+  // Hide break text
+  breakText.style.display = "none";
 
   let isFilling = false;
 
@@ -39,6 +43,7 @@ function updateCoffeeCup() {
 
 //fills up empty coffee beans as timer goes on
 function updateProgress() {
+  if (isBreak) return; //dont update progress if on break
   const progressContainer = document.getElementById("progress-container");
   //show progress bar
   progressContainer.style.display = "flex";
@@ -73,6 +78,7 @@ function generateTime() {
 }
 
 function coffeeBreak() {
+  isBreak = true;
   const coffeeCup = document.getElementById("coffee-cup"); // Define coffeeCup
   const breakAnimation = document.getElementById("break-animation");
   const steamElements = document.querySelectorAll(".steam");
@@ -89,6 +95,16 @@ function coffeeBreak() {
   // Show cat-cute.gif animation
   breakAnimation.src = catGif;
   breakAnimation.style.display = "block"; // Ensure the animation is visible
+
+  //show break-text when break starts
+  const breakText = document.getElementById("break-text");
+  breakText.style.display = "block";
+
+  // Hide the break animation after 5 minutes
+  setTimeout(() => {
+    breakAnimation.style.display = "none";
+    breakText.style.display = "none";
+  }, 300000); //5 min
 }
 
 //updates time
@@ -101,8 +117,18 @@ function updateTimer() {
     //time = 0, start coffee break timer
     time = 300; //5 min
     generateTime();
-    //alert("Time for a coffee break!");
+    alert("Time for a coffee break!");
     coffeeBreak();
+    //when 5 min break is over, reset timer
+    setTimeout(() => {
+      isBreak = false;
+      alert("Coffee break is done! Time to get back to work :)");
+      time = 1500; //25 min
+      generateTime();
+      updateCoffeeCup();
+      updateProgress();
+      startTimer();
+    }, 300000); //5 min
   }
 }
 
@@ -112,6 +138,7 @@ function startTimer(interval = 1000) {
     isRunning = true;
     myTimer = setInterval(updateTimer, interval);
     updateCoffeeCup();
+    updateProgress();
   }
 
   const steamElements = document.querySelectorAll(".steam");
@@ -127,6 +154,7 @@ function stopTimer() {
   clearInterval(myTimer);
   isRunning = false;
   updateCoffeeCup();
+  updateProgress();
 
   const steamElements = document.querySelectorAll(".steam");
   steamElements.forEach((steam) => {
@@ -136,11 +164,13 @@ function stopTimer() {
   audio.pause(); //pause audio
 }
 
-//resets timer - not sure if will use
+//resets timer
 function resetTimer() {
   stopTimer();
   time = 1500; //25 minutes
   generateTime();
+  updateCoffeeCup();
+  updateProgress();
 }
 
 //on load
