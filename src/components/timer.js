@@ -175,6 +175,36 @@ function resetTimer() {
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
+function changeColor(color) {
+  document.body.style.backgroundColor = color;
+
+  // Select the button(s) and change their background color
+  const buttons = document.querySelectorAll("button");
+  buttons.forEach((button) => {
+    button.style.backgroundColor = color;
+  });
+}
+
+function openColorModal() {
+  const modal = document.getElementById("colorModal");
+  modal.style.display = "block";
+}
+
+function closeColorModal() {
+  const modal = document.getElementById("colorModal");
+  modal.style.display = "none";
+}
+
+// Close the modal if the user clicks outside of it
+window.onclick = function (event) {
+  const modal = document.getElementById("colorModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
 function dropDownMenu() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
