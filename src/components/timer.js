@@ -185,6 +185,12 @@ function changeColor(color) {
   });
 }
 
+function changeTime(newTime) {
+  time = newTime;
+  generateTime();
+  stopTimer();
+}
+
 function openColorModal() {
   const modal = document.getElementById("colorModal");
   modal.style.display = "block";
@@ -198,6 +204,24 @@ function closeColorModal() {
 // Close the modal if the user clicks outside of it
 window.onclick = function (event) {
   const modal = document.getElementById("colorModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};
+
+function openTimeModal() {
+  const modal = document.getElementById("timeModal");
+  modal.style.display = "block";
+}
+
+function closeTimeModal() {
+  const modal = document.getElementById("timeModal");
+  modal.style.display = "none";
+}
+
+// Close the modal if the user clicks outside of it
+window.onclick = function (event) {
+  const modal = document.getElementById("timeModal");
   if (event.target === modal) {
     modal.style.display = "none";
   }
