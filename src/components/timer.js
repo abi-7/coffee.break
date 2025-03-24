@@ -51,10 +51,9 @@ function updateProgress() {
   progressContainer.innerHTML = "";
 
   const totalBeans = 5;
-
-  const totalDuration = totalBeans * 5 * 60;
-  const elapsed = totalDuration - time; //time that has passed
-  const beansToFill = Math.floor(elapsed / (5 * 60));
+  const intervalPerBean = time / totalBeans; // Time interval for each bean to fill
+  const elapsed = time; // Remaining time
+  const beansToFill = Math.floor((time - elapsed) / intervalPerBean); // Calculate beans to fill
 
   //display row of empty coffee beans
   for (let i = 0; i < totalBeans; i++) {
@@ -189,6 +188,10 @@ function changeTime(newTime) {
   time = newTime;
   generateTime();
   stopTimer();
+
+  const progressContainer = document.getElementById("progress-container");
+  progressContainer.innerHTML = ""; // Clear any existing beans
+  updateProgress();
 }
 
 function openColorModal() {
