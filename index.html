@@ -18,13 +18,17 @@
       <div id="center">
         <div class="timer">
           <span class="minute">2</span>:<span class="second">00</span>
-          <div id="audio-container">
-            <audio
-              id="audioPlayer"
-              src="public/images/audio/cozy-lofi.mp3"
-              loop
-            ></audio>
-            <button id="muteBtn">🔇</button>
+          <div class="dropdown">
+            <button onclick="dropDownMenu()" class="dropbtn">⚙️</button>
+            <div id="myDropdown" class="dropdown-content">
+              <audio
+                id="audioPlayer"
+                src="public/images/audio/cozy-lofi.mp3"
+                loop
+              ></audio>
+              <button id="muteBtn">🔇</button>
+              <button id="changeColor">🎨</button>
+            </div>
           </div>
         </div>
         <div class="steam" id="steam-one"></div>
