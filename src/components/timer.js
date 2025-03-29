@@ -1,5 +1,5 @@
 var myTimer = null; //for setInterval
-var time = 60; //time of timer
+var time = 1500; //time of timer
 var isRunning = false; //is timer started or stopped
 const emptyMug = "public/images/pixil-cup-empty.png";
 const fullMug = "public/images/pixil-cup-full.png";
@@ -10,8 +10,9 @@ const audio = document.getElementById("audioPlayer");
 const muteBtn = document.getElementById("muteBtn");
 audio.loop = true; //audio loops continuously
 const catGif = "public/images/cat-cute.gif";
-var isBreak = false; // Tracks if the timer is in a break state
+var isBreak = false; //tracks if the timer is in a break state
 
+/* Updates coffee cup images based on if timer is running or not running */
 function updateCoffeeCup() {
   const coffeeCup = document.getElementById("coffee-cup");
   const breakAnimation = document.getElementById("break-animation");
@@ -25,12 +26,12 @@ function updateCoffeeCup() {
 
   let isFilling = false;
 
-  // Clear any existing interval
+  //clear any existing interval
   if (mugInterval) {
     clearInterval(mugInterval);
   }
 
-  // Switch between empty and full images while timer is running
+  //switch between empty and full images while timer is running
   if (isRunning) {
     mugInterval = setInterval(() => {
       isFilling = !isFilling;
@@ -41,7 +42,7 @@ function updateCoffeeCup() {
   }
 }
 
-//fills up empty coffee beans as timer goes on
+/* Fills up empty coffee means in progress bar as timer goes on */
 function updateProgress() {
   if (isBreak) return; //dont update progress if on break
   const progressContainer = document.getElementById("progress-container");
@@ -58,7 +59,6 @@ function updateProgress() {
   //display row of empty coffee beans
   for (let i = 0; i < totalBeans; i++) {
     const coffeeBean = document.createElement("img");
-    //coffeeBean.src = coffeeBeanEmpty;
     coffeeBean.src = i < beansToFill ? coffeeBeanFull : coffeeBeanEmpty;
     coffeeBean.alt = "Empty Coffee Bean";
     coffeeBean.classList.add("coffee-bean");
@@ -66,6 +66,7 @@ function updateProgress() {
   }
 }
 
+/* Generates the time basedon deafult or chosen time period  */
 function generateTime() {
   var second = time % 60;
   var minute = Math.floor(time / 60) % 60;
@@ -76,6 +77,8 @@ function generateTime() {
     minute < 10 ? "0" + minute : minute;
 }
 
+/* When timer ends and its time for coffee break this 
+functionality will run  */
 function coffeeBreak() {
   isBreak = true;
   const coffeeCup = document.getElementById("coffee-cup"); // Define coffeeCup
@@ -93,7 +96,7 @@ function coffeeBreak() {
 
   // Show cat-cute.gif animation
   breakAnimation.src = catGif;
-  breakAnimation.style.display = "block"; // Ensure the animation is visible
+  breakAnimation.style.display = "block";
 
   //show break-text when break starts
   const breakText = document.getElementById("break-text");
