@@ -17,3 +17,5 @@ Thumbs.db
 
 # npm package-lock files (optional but common)
 package-lock.json
+
+out/
