@@ -1,5 +1,6 @@
 var myTimer = null; //for setInterval
-var time = 1500; //time of timer
+var totalTime = 1500; //time of timer
+let time = totalTime; //time of timer
 var isRunning = false; //is timer started or stopped
 const emptyMug = "public/images/pixil-cup-empty.png";
 const fullMug = "public/images/pixil-cup-full.png";
@@ -52,9 +53,9 @@ function updateProgress() {
   progressContainer.innerHTML = "";
 
   const totalBeans = 5;
-  const intervalPerBean = time / totalBeans; // Time interval for each bean to fill
-  const elapsed = time; // Remaining time
-  const beansToFill = Math.floor((time - elapsed) / intervalPerBean); // Calculate beans to fill
+  const intervalPerBean = totalTime / totalBeans; // Time interval for each bean to fill
+  const elapsed = totalTime - time; // Remaining time
+  const beansToFill = Math.floor(elapsed / intervalPerBean); // Calculate beans to fill
 
   //display row of empty coffee beans
   for (let i = 0; i < totalBeans; i++) {
