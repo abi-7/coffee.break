@@ -277,6 +277,24 @@ window.onclick = function (event) {
   }
 };
 
+function openAboutModal() {
+  const modal = document.getElementById("aboutModal");
+  modal.style.display = "block";
+}
+
+function closeAboutModal() {
+  const modal = document.getElementById("aboutModal");
+  modal.style.display = "none";
+}
+
+// Close the modal if the user clicks outside of it
+window.onclick = function (event) {
+  const modal = document.getElementById("aboutModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};
+
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function dropDownMenu() {

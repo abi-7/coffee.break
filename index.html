@@ -26,6 +26,7 @@
               <button id="muteBtn">🔇</button>
               <button onclick="openColorModal()" id="changeColor">🎨</button>
               <button onclick="openTimeModal()">⏰</button>
+              <button onclick="openAboutModal()">ℹ️</button>
             </div>
           </div>
         </div>
@@ -51,6 +52,31 @@
             <button onclick="changeTime(900)">15 min</button>
             <button onclick="changeTime(1800)">30 min</button>
             <button onclick="changeTime(2400)">40 min</button>
+          </div>
+        </div>
+
+        <!-- Modal for about selection -->
+        <div id="aboutModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeAboutModal()">&times;</span>
+            <h2>Coffee.Break Timer v1.0</h2>
+            <p>Made by Abigail Ferreira❤️</p>
+            <button onclick="window.open('https://github.com/abi-7/')">
+              GitHub
+            </button>
+            <button onclick="window.open('https://x.com/abi_ferreira7')">
+              X
+            </button>
+            <button
+              onclick="window.open('https://www.instagram.com/devanddesigns/')"
+            >
+              Instagram
+            </button>
+            <button
+              onclick="window.open('https://www.linkedin.com/in/abigail-ferreira/')"
+            >
+              LinkedIn
+            </button>
           </div>
         </div>
 
