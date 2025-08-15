@@ -78,6 +78,38 @@ function generateTime() {
     minute < 10 ? "0" + minute : minute;
 }
 
+/* Helper function to hide/show all control buttons */
+function toggleControlButtons(show) {
+  const startBtn =
+    document.getElementById("start-btn") ||
+    document.querySelector('button[onclick="startTimer()"]');
+  const stopBtn =
+    document.getElementById("stop-btn") ||
+    document.querySelector('button[onclick="stopTimer()"]');
+  const resetBtn =
+    document.getElementById("reset-btn") ||
+    document.querySelector('button[onclick="resetTimer()"]');
+  const buttonContainer =
+    document.getElementById("button-container") ||
+    document.querySelector(".button-container");
+
+  // Hide/show all control buttons
+  if (startBtn) {
+    startBtn.style.display = show ? "inline-block" : "none";
+  }
+  if (stopBtn) {
+    stopBtn.style.display = show ? "inline-block" : "none";
+  }
+  if (resetBtn) {
+    resetBtn.style.display = show ? "inline-block" : "none";
+  }
+
+  // Hide/show the entire button container
+  if (buttonContainer) {
+    buttonContainer.style.display = show ? "flex" : "none";
+  }
+}
+
 /* When timer ends and its time for coffee break this 
 functionality will run  */
 function coffeeBreak() {
@@ -94,6 +126,8 @@ function coffeeBreak() {
   //hide progress bar
   const progressContainer = document.getElementById("progress-container");
   progressContainer.style.display = "none";
+
+  toggleControlButtons(false);
 
   // Show cat-cute.gif animation
   breakAnimation.src = catGif;
@@ -115,23 +149,29 @@ function updateTimer() {
   if (time > 0) {
     time--;
     generateTime();
-    updateProgress();
+    if (!isBreak) {
+      updateProgress(); //only update progress during work time
+    }
   } else {
     //time = 0, start coffee break timer
-    time = 300; //5 min
-    generateTime();
-    alert("Time for a coffee break!");
-    coffeeBreak();
-    //when 5 min break is over, reset timer
-    setTimeout(() => {
+    if (!isBreak) {
+      alert("Time for a coffee break!");
+      time = 300; //5 min
+      generateTime();
+      coffeeBreak();
+    } else {
+      //when 5 min break is over, reset timer
+      // Break timer finished, back to work
+      stopTimer(); // Stop the current timer
       isBreak = false;
       alert("Coffee break is done! Time to get back to work :)");
       time = 1500; //25 min
       generateTime();
       updateCoffeeCup();
       updateProgress();
+      toggleControlButtons(true);
       startTimer();
-    }, 300000); //5 min
+    }
   }
 }
 
@@ -142,6 +182,7 @@ function startTimer(interval = 1000) {
     myTimer = setInterval(updateTimer, interval);
     updateCoffeeCup();
     updateProgress();
+    toggleControlButtons(true);
   }
 
   const steamElements = document.querySelectorAll(".steam");
@@ -174,6 +215,8 @@ function resetTimer() {
   generateTime();
   updateCoffeeCup();
   updateProgress();
+  // Show control buttons when timer resets
+  toggleControlButtons(true);
 }
 
 /* When the user clicks on the button,
@@ -259,6 +302,7 @@ window.onload = function () {
   generateTime();
   updateCoffeeCup();
   updateProgress();
+  toggleControlButtons(true);
 
   muteBtn.addEventListener("click", () => {
     audio.muted = !audio.muted;

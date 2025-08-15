@@ -8,7 +8,7 @@ function createWindow() {
     width: 800,
     height: 700,
     resizable: false,
-    movable: false,
+    movable: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true, // Required for preload
