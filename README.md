@@ -21,9 +21,9 @@ Enjoy a short break (default: 5 minutes) when the timer alerts you.
 
 Repeat for multiple Pomodoro cycles to maximize productivity!
 
-<h1>📸 Screenshots</h1>
+<h1>📸 App Preview </h1>
 
- (coming soon!)
+![Coffee Break Demo](./public/images/coffee.break.gif)
 
 <h1>💡 Why Use This Timer?</h1>
 
